@@ -22,8 +22,8 @@
     <td>在这里`strace`运行的`who`命令是一次性的，而`sysdig`会监视`who`命令的执行；使用`sysdig`过滤功能来隔离指定的例子：`sysdig proc.name=who and proc.ppid=534`，这将会在shell中间是`who`命令的执行，并且`PID`为534</td>
   </tr>
   <tr>
-    <td>跟踪仅在某些特定的系统调用</td>
-    <td>strace -e open who; strace -e trace=open, read who</td>
+    <td>跟踪仅在某些特<br>定的系统调用</td>
+    <td>strace -e open who; </br> strace -e trace=open, read who</td>
     <td></td>
     <td></td>
   </tr>
