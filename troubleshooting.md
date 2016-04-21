@@ -8,23 +8,4 @@
 而在其它方面，`sysdig`却有一个不同的理念，因为它发生的事件是实时监控的，它会在分析并捕获数据之前保存到一个文件中去。值得庆幸的是，`sysdig`提供了丰富
 的过滤选项来监视一次性的操作，下面的你将会看到：
 
-<table>
-  <tr>
-    <th>Operation</th>
-    <th>strace</th>
-    <th>sysdig</th>
-    <th>Note</th>
-  </tr>
-  <tr>
-    <td>跟踪命令的执行</td>
-    <td>strace who</td>
-    <td>sysdig proc.name=who</td>
-    <td>在这里`strace`运行的`who`命令是一次性的，而`sysdig`会监视`who`命令的执行；使用`sysdig`过滤功能来隔离指定的例子：`sysdig proc.name=who and proc.ppid=534`，这将会在shell中间是`who`命令的执行，并且`PID`为534</td>
-  </tr>
-  <tr>
-    <td>跟踪仅在某些特<br>定的系统调用</td>
-    <td>strace -e open who; </br> strace -e trace=open, read who</td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+
