@@ -77,7 +77,7 @@ root     18939  0.0  0.0 103244   860 pts/3    S+   22:04   0:00 grep tpbackup
 进程状态标识：
 
 | 一级标识  | 二级标识|  描述 |    
-| :--------:| :-----: | :----:|
+| :--------:| :-----: | :----|
 | D         |         |   不可中断 Uninterruptible sleep (usually IO)   |    
 | R         |         |   正在运行，或在队列中的进程   |  
 | S         |         |  	处于休眠状态  |
@@ -91,3 +91,5 @@ root     18939  0.0  0.0 103244   860 pts/3    S+   22:04   0:00 grep tpbackup
 |           | s       |  	包含子进程    |  
 |           | +       |  	位于后台的进程组  |  
 |           | l       |  	多线程，克隆线程 multi-threaded (using CLONE_THREAD, like NPTL pthreads do)  |  
+
+> 一般情况下，`SI`标识的是线程。`Ss`是带有子进程的父进程。`S`一般是进程。
