@@ -30,3 +30,46 @@
 ![](picture/5.png)
 
 > 官方地址：https://sysdig.com/
+
+### 查看线程或进程状态
+
+> `ps`可以罗列当前系统的进程信息，常用的命令选项是`ps auxH`或者`ps XH pid`；其中大写的`H`可以打印出相关线程信息。
+
+```shell
+[root@web-162 ~]# ps XH 12196
+  PID   STACKP      ESP      EIP TMOUT ALARM STAT TTY        TIME COMMAND
+12196 ee88c270 ee889b38 f7edada0     -     - Dl+  pts/0     10:32 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f8b91b0 f7edea63     -     - Sl+  pts/0      2:35 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f7b81b0 f7edea63     -     - Sl+  pts/0      2:32 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f6b71b0 f7edea63     -     - Sl+  pts/0      2:55 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f4b51b0 f7edea63     -     - Sl+  pts/0      2:41 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f2b31b0 f7edea63     -     - Sl+  pts/0      2:07 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f3b41b0 f7edea63     -     - Sl+  pts/0      2:11 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+12196 ee88c270 3f5b61b0 f7edea63     -     - Sl+  pts/0      2:02 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+```
+
+或者
+
+```shell
+[root@web-162 ~]# ps auxH | grep tpbackup
+root     12196 22.5  0.8 1017764 68220 pts/0   Sl+  21:13  11:32 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  5.0  0.8 1017764 68220 pts/0   Sl+  21:13   2:36 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  5.7  0.8 1017764 68220 pts/0   Sl+  21:20   2:32 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  7.8  0.8 1017764 68220 pts/0   Sl+  21:27   2:55 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  8.8  0.8 1017764 68220 pts/0   Sl+  21:34   2:41 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  8.9  0.8 1017764 68220 pts/0   Sl+  21:41   2:07 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196 12.6  0.8 1017764 68220 pts/0   Sl+  21:47   2:11 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196 17.2  0.8 1017764 68220 pts/0   Sl+  21:53   2:02 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196 25.0  0.8 1017764 68220 pts/0   Sl+  21:58   1:34 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  0.8  0.8 1017764 68220 pts/0   Sl+  22:03   0:00 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  0.4  0.8 1017764 68220 pts/0   Sl+  22:03   0:00 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  0.4  0.8 1017764 68220 pts/0   Sl+  22:03   0:00 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     12196  0.6  0.8 1017764 68220 pts/0   Sl+  22:03   0:00 /usr/bin/python /usr/bin/fab -f tpbackup.py go
+root     18939  0.0  0.0 103244   860 pts/3    S+   22:04   0:00 grep tpbackup
+```
+
+### pstree
+
+> `pstree`会按照树的形式打印出进程信息。常用命令选项是`pstree -anp`或者`pstree -anp pid`；其中线程和进程显示的区别是：
+`{线程名字}, 线程号`
+`进程名字, 进程号`
